@@ -1,2 +1,2 @@
-# ESTII-STAT
-Prácticas Stat ESTII 2023
+# ETSIIT-STAT
+Prácticas Stat ETSIIT 2023
