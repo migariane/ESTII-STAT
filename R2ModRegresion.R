@@ -44,3 +44,17 @@ DesStaRes <- sqrt(sum((y - (a+b*x+c*x^2))^2)/(n-3)); DesStaRes;# Residual var
 plot(x,y, col="blue");
 curve(a+b*x+c*x^2, col="red", add=TRUE, lwd="3");
 
+## Modelo hiperbolico
+inv.x <- 1/x
+mod.hip <- lm(y ~ inv.x); mod.hip;
+summary(mod.hip)
+## Coeficiente "a" del modelo lineal Y=a+b/x;
+a <- mod.hip$coefficients[[1]];a;
+## Coeficiente "b" del modelo lineal Y=a+b/x;
+b <- mod.hip$coefficients[[2]];b;
+cov(inv.x,y) ## Covarianza;
+cor <- cor(inv.x,y) ## Coeficiente de correlacion lineal;
+R2 <- cor^2; R2
+DesStaRes <- sqrt(sum((y - (a+b/x))^2)/(n-2)); DesStaRes;# Residual var
+plot(x, y, col="blue");
+curve(a+b/x, add=TRUE, col="red", lwd="3");
