@@ -16,20 +16,20 @@ DesStaRes <- sqrt(sum((y - (a+b*x))^2)/(n-2)); DesStaRes;# Residual var
 plot(x, y, col="blue");
 abline(a, b, col="red", lwd="3");
 
-## Modelo Exponencial y = a*(b^X)
+## Modelo Exponencial ln(y)=a+b*x
 logy <- log(y)
 mod.exp <- lm(logy ~ x); mod.exp;
 summary(mod.exp)
-## Coeficiente "a" del modelo exp Y=a*(b^X);
-a <- exp(mod.exp$coefficients[[1]]);a;
-## Coeficiente "b" del modelo exp Y=a*(b^X);;
-b <- exp(mod.exp$coefficients[[2]]);b;
+## Coeficiente "a" del modelo ln(y)=a+b*x;
+a <- mod.exp$coefficients[[1]];a;
+## Coeficiente "b" del modelo ln(y)=a+b*x;;
+b <- mod.exp$coefficients[[2]];b;
 cov(x,logy) ## Covarianza;
 cor <- cor(x,logy) ## Coeficiente de correlacion lineal;
 R2 <- cor^2; R2
-DesStaRes <- sqrt(sum((y - (a*(b^x)))^2)/(n-2)); DesStaRes;# Residual var
-plot(x,y, col="blue");
-curve(a*(b^x), col="red", add=TRUE, lwd="3");
+DesStaRes <- sqrt(sum((logy - (a+b*x))^2)/(n-2)); DesStaRes;# Residual var
+plot(x,logy, col="blue");
+abline(a, b, col="red", add=TRUE, lwd="3");
 
 ## Modelo parabolico y = a+bx+cX2
 mod.par <- lm(y ~ x + I(x^2)); mod.par;

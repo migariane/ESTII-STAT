@@ -13,6 +13,7 @@ summary(RegModel.1)
 library(leaps, pos=17)
 
 predict(RegModel.1, data.frame(Altura=173))
+predict(RegModel.1, data.frame(Altura=173),interval=”confidence”)
 
 plot(Empleados$Altura, Empleados$Peso, main="Nube de puntos y ajuste", xlab="Altura", ylab="Peso")
 abline(lm(Empleados$Peso ~ Empleados$Altura), col="red")
