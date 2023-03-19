@@ -1,8 +1,45 @@
-###PRACTICA TRES MODELOS REGRESION
+### TABLAS DE DOBLE ENTRADA: % MARGINALES Y CONDICIONALES
 
-Empleados <- readXL("C:/Users/Usuario/Dropbox/UGR/TEACHING/Informatica/Practicas/DATOS/empleados1.xls", 
-  rownames=FALSE, header=TRUE, na="", sheet="Respuestas", stringsAsFactors=TRUE)
-editDataset(Empleados)
+Empleados <- readXL("C:/Users/Usuario/Dropbox/UGR/TEACHING/Informatica/Practicas/ETSIIT-STAT/Data/Ejemplodatos3.xls",
+ rownames=FALSE, header=TRUE, na="", sheet="Respuestas", stringsAsFactors=TRUE)
+
+library(abind, pos=16)
+local({
+  .Table <- xtabs(~Red+Sexo, data=Empleados)
+  cat("\nFrequency table:\n")
+  print(.Table)
+  .Test <- chisq.test(.Table, correct=FALSE)
+  print(.Test)
+})
+local({
+  .Table <- xtabs(~Red+Sexo, data=Empleados)
+  cat("\nFrequency table:\n")
+  print(.Table)
+  cat("\nTotal percentages:\n")
+  print(totPercents(.Table))
+  .Test <- chisq.test(.Table, correct=FALSE)
+  print(.Test)
+})
+local({
+  .Table <- xtabs(~Red+Sexo, data=Empleados)
+  cat("\nFrequency table:\n")
+  print(.Table)
+  cat("\nRow percentages:\n")
+  print(rowPercents(.Table))
+  .Test <- chisq.test(.Table, correct=FALSE)
+  print(.Test)
+})
+local({
+  .Table <- xtabs(~Red+Sexo, data=Empleados)
+  cat("\nFrequency table:\n")
+  print(.Table)
+  cat("\nColumn percentages:\n")
+  print(colPercents(.Table))
+  .Test <- chisq.test(.Table, correct=FALSE)
+  print(.Test)
+})
+
+###PRACTICA TRES MODELOS REGRESION
 
 library(lattice, pos=16)
 xyplot(Peso ~ Altura, type="p", pch=16, auto.key=list(border=TRUE), par.settings=simpleTheme(pch=16), 
@@ -25,7 +62,8 @@ LinearModel.2 <- lm(Peso ~ Altura + Edad + Edad^2, data=Empleados)
 summary(LinearModel.2)
 plot(allEffects(LinearModel.2, residuals=TRUE), partial.residuals=list(span=0.5))
 
-
 LinearModel.3 <- lm(log(Peso) ~ Altura, data=Empleados)
 summary(LinearModel.3)
 scatterplot(log(Peso)~Altura, reg.line=lm, xlab="Altura", ylab="log(Peso)", data=Empleados)
+
+
