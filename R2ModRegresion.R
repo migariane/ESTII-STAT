@@ -31,7 +31,7 @@ DesStaRes <- sqrt(sum((logy - (a+b*x))^2)/(n-2)); DesStaRes;# Residual var
 plot(x,logy, col="blue");
 abline(a, b, col="red", add=TRUE, lwd="3");
 
-## Modelo parabolico y = a+bx+cX2
+## Modelo parabolico o quadratic, y = a+bx+cX2
 mod.par <- lm(y ~ x + I(x^2)); mod.par;
 summary(mod.par)
 ## Coeficiente "a" del modelo y = a+bx+cX2;
@@ -58,3 +58,36 @@ R2 <- cor^2; R2
 DesStaRes <- sqrt(sum((y - (a+b/x))^2)/(n-2)); DesStaRes;# Residual var
 plot(x, y, col="blue");
 curve(a+b/x, add=TRUE, col="red", lwd="3");
+library(car)
+scatterplot(y~logx, reg.line=lm, xlab="x", ylab="y")
+
+# Modelo potenical o multiplicativo 
+logy <- log(y)
+logx <- log(x)
+mod.pot <- lm(logy ~ logx); mod.pot;
+summary(mod.pot)
+## Coeficiente "a" del modelo ln(y)=a+b*x;
+a <- mod.pot$coefficients[[1]];a;
+## Coeficiente "b" del modelo ln(y)=a+b*x;;
+b <- mod.pot$coefficients[[2]];b;
+cov(logx,logy) ## Covarianza;
+cor <- cor(logx,logy) ## Coeficiente de correlacion lineal;
+R2 <- cor^2; R2
+DesStaRes <- sqrt(sum((logy - (a+b*logx))^2)/(n-2)); DesStaRes;# Residual var
+plot(logx,logy, col="blue");
+curve(a+b*log(x), col="red", add=TRUE, lwd="3");
+
+# Modelo logaritmico
+logx <- log(x)
+mod.log <- lm(y ~ logx); mod.log;
+summary(mod.log)
+## Coeficiente "a" del modelo ln(y)=a+b*x;
+a <- mod.log$coefficients[[1]];a;
+## Coeficiente "b" del modelo ln(y)=a+b*x;;
+b <- mod.log$coefficients[[2]];b;
+cov(logx,y) ## Covarianza;
+cor <- cor(logx,y) ## Coeficiente de correlacion lineal;
+R2 <- cor^2; R2
+DesStaRes <- sqrt(sum((y - (a+b*logx))^2)/(n-2)); DesStaRes;# Residual var
+plot(logx,y, col="blue");
+curve(a+b*log(x), col="red", add=TRUE, lwd="3");
