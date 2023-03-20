@@ -91,3 +91,4 @@ R2 <- cor^2; R2
 DesStaRes <- sqrt(sum((y - (a+b*logx))^2)/(n-2)); DesStaRes;# Residual var
 plot(logx,y, col="blue");
 curve(a+b*log(x), col="red", add=TRUE, lwd="3");
+

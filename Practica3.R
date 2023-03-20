@@ -75,7 +75,7 @@ lines(lowess(Empleados$Altura, Empleados$Peso), col="blue")
 scatterplot(Peso ~ Altura | Sexo, xlab="Altura", ylab="Peso", data=Empleados)
 
 # Modelo cuadratico
-LinearModel.2 <- lm(Peso ~ Altura + Edad + Edad^2, data=Empleados)
+LinearModel.2 <- lm(Peso ~ Altura + I(Altura^2), data=Empleados)
 summary(LinearModel.2)
 plot(allEffects(LinearModel.2, residuals=TRUE), partial.residuals=list(span=0.5))
 
