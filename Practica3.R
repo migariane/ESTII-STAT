@@ -62,7 +62,7 @@ summary(RegModel.1)
 
 library(leaps, pos=17)
 predict(RegModel.1, data.frame(Altura=173))
-predict(RegModel.1, data.frame(Altura=173),interval=”confidence”)
+predict(RegModel.1, data.frame(Altura=173),interval="confidence")
 # Prediccion Pluging Rcmdr HH 
 NewData <- data.frame(Altura=173, row.names="1")
 NewData  # Newdata
@@ -83,5 +83,5 @@ plot(allEffects(LinearModel.2, residuals=TRUE), partial.residuals=list(span=0.5)
 LinearModel.3 <- lm(log(Peso) ~ Altura, data=Empleados)
 summary(LinearModel.3)
 scatterplot(log(Peso)~Altura, reg.line=lm, xlab="Altura", ylab="log(Peso)", data=Empleados)
-
+library(MASS, pos=17)
 

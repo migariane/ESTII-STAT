@@ -10,7 +10,7 @@ a <- mod.lin$coefficients[[1]];a;
 ## Coeficiente "b" del modelo lineal Y=a+b*x;
 b <- mod.lin$coefficients[[2]];b;
 cov(x,y) ## Covarianza;
-cor <- cor(x,y) ## Coeficiente de correlacion lineal;
+cor <- cor(x,y); cor ## Coeficiente de correlacion lineal;
 R2 <- cor^2; R2
 DesStaRes <- sqrt(sum((y - (a+b*x))^2)/(n-2)); DesStaRes;# Residual var
 plot(x, y, col="blue");
@@ -61,7 +61,7 @@ curve(a+b/x, add=TRUE, col="red", lwd="3");
 library(car)
 scatterplot(y~logx, reg.line=lm, xlab="x", ylab="y")
 
-# Modelo potenical o multiplicativo 
+# Modelo potencial o multiplicativo 
 logy <- log(y)
 logx <- log(x)
 mod.pot <- lm(logy ~ logx); mod.pot;
