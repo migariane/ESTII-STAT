@@ -1,7 +1,8 @@
 ### TABLAS DE DOBLE ENTRADA: % MARGINALES Y CONDICIONALES
 
-Empleados <- readXL("C:/Users/Usuario/Dropbox/UGR/TEACHING/Informatica/Practicas/ETSIIT-STAT/Data/Ejemplodatos3.xls",
- rownames=FALSE, header=TRUE, na="", sheet="Respuestas", stringsAsFactors=TRUE)
+Empleados <- 
+  readXL("C:/Users/Usuario/Dropbox/UGR/TEACHING/Informatica/Practicas/ETSIIT-STAT/ETSIIT-STAT/Data/Ejemplodatos3.xls",
+   rownames=FALSE, header=TRUE, na="", sheet="Respuestas", stringsAsFactors=TRUE)
 
 library(abind, pos=16)
 local({
@@ -39,6 +40,12 @@ local({
   print(.Test)
 })
 
+### MEDIAS POR GRUPO
+Tapply(Peso ~ Sexo, mean, na.action=na.omit, data=Empleados) # mean by groups
+with(Empleados, plotMeans(Peso, Sexo, error.bars="se", connect=TRUE))
+
+
+
 ###PRACTICA TRES MODELOS REGRESION
 
 library(lattice, pos=16)
@@ -65,5 +72,4 @@ plot(allEffects(LinearModel.2, residuals=TRUE), partial.residuals=list(span=0.5)
 LinearModel.3 <- lm(log(Peso) ~ Altura, data=Empleados)
 summary(LinearModel.3)
 scatterplot(log(Peso)~Altura, reg.line=lm, xlab="Altura", ylab="log(Peso)", data=Empleados)
-
 
