@@ -66,9 +66,9 @@ logy <- log(y)
 logx <- log(x)
 mod.pot <- lm(logy ~ logx); mod.pot;
 summary(mod.pot)
-## Coeficiente "a" del modelo ln(y)=a+b*ln(x);
+## Coeficiente "a" del modelo ln(y)=ln(a)+b*ln(x);
 a <- mod.pot$coefficients[[1]];a;
-## Coeficiente "b" del modelo ln(y)=a+b*ln(x);
+## Coeficiente "b" del modelo ln(y)=ln(a)+b*ln(x);
 b <- mod.pot$coefficients[[2]];b;
 cov(logx,logy) ## Covarianza;
 cor <- cor(logx,logy) ## Coeficiente de correlacion lineal;
