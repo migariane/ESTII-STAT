@@ -74,6 +74,14 @@ cov(logx,logy) ## Covarianza;
 cor <- cor(logx,logy) ## Coeficiente de correlacion lineal;
 R2 <- cor^2; R2
 DesStaRes <- sqrt(sum((logy - (a+b*logx))^2)/(n-2)); DesStaRes;# Residual var
+res <- (logy - mod.pot$residuals)
+stresd <- (res - mean(res))/sd(res)
+summary(stresd)
+library(e1071)
+skewness(stresd, type = 2)
+skewness(res, type = 2)
+
+
 plot(logx,logy, col="blue");
 curve(a+b*log(x), col="red", add=TRUE, lwd="3");
 
