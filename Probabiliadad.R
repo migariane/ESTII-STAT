@@ -1,8 +1,8 @@
-num = 100000
+num = 1000000
 n = round((0.5+6*runif(num)),0)
 table(n/num)
 
-num = 100000
+num = 1000000
 n = round((0.5+6*runif(num)),0)
 m = which(n==6)
 s = c(m[1], diff(m))
@@ -11,7 +11,7 @@ mean(s)
 library(ggplot2)
 
 # number of times to repeat the experiment
-iterration <-  10000 
+iter <-  10000 
 
 # defining the doors
 doors <- c("cabra","cabra","coche")
@@ -84,17 +84,17 @@ runs[is.na(runs)]<-0
 runs
 
 # Bayesian perspective 
-car=sample(3,10,replace=T)
+car=sample(3,10000,replace=T)
 car
 # Which door is chosen:
-door=sample(3,10,replace=T)
+door=sample(3,10000,replace=T)
 door
-3 3 2 2 1 3 3 1 1 2
+
 # Switch and win: the car is not behind the chosen door.
 switchwin=(door!=car)
 switchwin
-sum(switchwin)/10
+sum(switchwin)/10000
 # Not switch and win: the car is behind the chosen door.
 noswitchwin=(door==car)
 noswitchwin
-sum(noswitchwin)/10
+sum(noswitchwin)/10000
