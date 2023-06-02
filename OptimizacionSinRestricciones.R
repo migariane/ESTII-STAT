@@ -59,13 +59,14 @@ f2yprimax
 
 #Partial derivatives xy
 f2x <- expression(3 * x^2 + 3 * y^2 - 15)
-f2xprimax <- D(f2xy,"y")
+f2xprimax <- D(f2x,"y")
 f2xprimax
 
 f2y <- expression(6 * x*y - 12)
 f2yprimax <- D(f2y,"x")
 f2yprimax
 
+library(plotly)
 my_function <- function(x,y) {
   final_value = x^3 + 3*x*y^2 -15*x -12*y
 }
@@ -93,3 +94,18 @@ optimum <- lp(direction="max", objective.in, const.mat,
               const.dir, const.rhs)
 optimum$solution 
 optimum$objval
+
+
+# Optimizacion sin restricciones bivariada: Ejemplo clase
+f <- function(x) (2*(x[1])^2 + (x[2])^2 + (x[1])^2*(x[2]))
+r <- optim(c(1, 1), f, hessian=T);r
+# Optimo (0,0)
+my_function <- function(x,y) {
+  final_value = 2*x^2 + y^2 + x^2*y
+}
+
+input_1 <- seq(-3, 3,0.1)
+input_2 <- seq(-3, 3,0.1)
+z <- outer(input_1, input_2, my_function)
+plot_ly(x = input_1, y = input_2, z = z) %>% add_surface()
+
